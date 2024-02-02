@@ -1,12 +1,12 @@
 class SightingsController < ApplicationController
     def index
         sightings = Sighting.all
-        render json: sightings
+        render json: sightings, includes: [:animals]
     end
 
     def show
-        sighting = Sighting.find(params[:id])
-        render json: sighting
+        sighting = Sighting.find_by(id: params[:id])
+        render json: sighting, includes: [:animal]
     end
 
     def create 
